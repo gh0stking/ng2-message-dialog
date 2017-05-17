@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 
 import { MsgDialog } from '../components/msg-dialog.component';
 import { MsgDialogService } from '../components/msg-dialog.service';
+import { UserService } from '../services/user.service';
 
 @Component({
   selector: 'app-root',
@@ -9,7 +10,8 @@ import { MsgDialogService } from '../components/msg-dialog.service';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  constructor(private msgDialogService: MsgDialogService) { }
+
+  constructor(private msgDialogService: MsgDialogService, private userService: UserService) { }
 
   msgDialogLoaded(event): void {
     this.msgDialogService.initializeMsgDialog(event);
@@ -21,13 +23,13 @@ export class AppComponent {
       okText: "OK",
       cancelText: "Cancel",
       message: "Are you sure you want to delete it?",
-      showCancelButton: showCancelButton,
-      onOK: function () {
-        console.log('ok clicked, do something...');
-      },
-      onCancel: function () {
-        console.log('cancel clicked, do something...');
-      }
+      showCancelButton: showCancelButton
+    });
+  }
+
+  deleteUser(): void {
+    this.userService.deleteUser().subscribe(res => {
+      console.log('bingo');
     });
   }
 

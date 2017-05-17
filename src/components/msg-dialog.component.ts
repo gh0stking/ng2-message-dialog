@@ -8,8 +8,6 @@ export class MsgDialogSettings {
     public okText?: string;
     public cancelText?: string;
     public showCancelButton?: boolean;
-    public onOK?: () => void;
-    public onCancel?: () => void;
 }
 
 @Component({
@@ -18,6 +16,8 @@ export class MsgDialogSettings {
     styleUrls: ['./msg-dialog.css']
 })
 export class MsgDialog implements OnInit {
+    @Output("onOK") onOK: EventEmitter<any> = new EventEmitter<any>();
+    @Output("onCancel") onCancel: EventEmitter<any> = new EventEmitter<any>();
     @Output("msgDialogLoaded") msgDialogLoaded = new EventEmitter<MsgDialog>();
     @ViewChild('msgDialogModal') msgDialogModal: ModalDirective;
 
@@ -57,15 +57,15 @@ export class MsgDialog implements OnInit {
 
     private onOkEvent(): void {
         this.hideModal();
-        if (this.settings && this.settings.onOK) {
-            this.settings.onOK();
+        if (this.onOK) {
+            this.onOK.emit(true);
         }
     }
 
     private onCancelEvent(): void {
         this.hideModal();
-        if (this.settings && this.settings.showCancelButton && this.settings.onCancel) {
-            this.settings.onCancel();
+        if (this.settings && this.settings.showCancelButton && this.onCancel) {
+            this.onCancel.emit(false);
         }
     }
 }

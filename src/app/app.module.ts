@@ -9,6 +9,8 @@ import { AppComponent } from './app.component';
 import { MsgDialog } from '../components/msg-dialog.component';
 import { MsgDialogService } from '../components/msg-dialog.service';
 
+import { UserService } from '../services/user.service';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -22,7 +24,8 @@ import { MsgDialogService } from '../components/msg-dialog.service';
     ModalModule.forRoot()
   ],
   providers: [
-    MsgDialogService
+    MsgDialogService,
+    UserService
   ],
   bootstrap: [AppComponent]
 })
