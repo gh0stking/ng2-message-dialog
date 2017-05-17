@@ -1,0 +1,13 @@
+.modal-header{
+    background-color:#2D3446;
+    border-top-left-radius:3px;
+    border-top-right-radius:3px;
+    color:white;
+}
+@media (min-width: 544px)
+{
+    margin: 300px auto;
+}
+.modal-dialog{
+    margin-top:150px;
+}
