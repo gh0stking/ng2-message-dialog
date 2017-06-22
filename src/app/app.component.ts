@@ -11,25 +11,34 @@ import { UserService } from '../services/user.service';
 })
 export class AppComponent {
 
-  constructor(private msgDialogService: MsgDialogService, private userService: UserService) { }
+  constructor(
+    private msgDialogService: MsgDialogService,
+    private userService: UserService
+  ) { }
 
-  msgDialogLoaded(event): void {
+  private msgDialogLoaded(event): void {
     this.msgDialogService.initializeMsgDialog(event);
   }
 
-  showDialog(showCancelButton: boolean): void {
-    this.msgDialogService.showModal({
+  private showDialog(showCancelButton: boolean): void {
+    let dialog = this.msgDialogService.showModal({
       title: "Warning",
       okText: "OK",
       cancelText: "Cancel",
       message: "Are you sure you want to delete it?",
       showCancelButton: showCancelButton
     });
+    dialog.onOK.subscribe(() => {
+      this.deleteUser();
+    });
+    dialog.onCancel.subscribe(() => {
+      console.log('delete canceled.');
+    });
   }
 
-  deleteUser(): void {
+  private deleteUser(): void {
     this.userService.deleteUser().subscribe(res => {
-      console.log('bingo');
+      console.log('deleted completed.');
     });
   }
 

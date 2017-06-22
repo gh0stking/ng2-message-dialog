@@ -30,9 +30,10 @@ export class MsgDialog implements OnInit {
         this.msgDialogLoaded.emit(this);
     }
 
-    public showModal(settings: MsgDialogSettings) {
+    public showModal(settings: MsgDialogSettings): MsgDialog {
         this.settings = settings;
         this.msgDialogModal.show();
+        return this;
     }
 
     public hideModal() {

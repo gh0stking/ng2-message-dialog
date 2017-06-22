@@ -10,8 +10,8 @@ export class MsgDialogService {
         this.msgDialogComponent = msgDialog;
     }
 
-    public showModal(settings: MsgDialogSettings) {
-        this.msgDialogComponent.showModal(settings);
+    public showModal(settings: MsgDialogSettings): MsgDialog {
+        return this.msgDialogComponent.showModal(settings);
     }
 
     public hideModal() {
