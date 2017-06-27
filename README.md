@@ -3,7 +3,7 @@
 # 使用方式：
 ## `1.添加MsgDialog和MsgDialogService的引用`
 
-## `2.在页面中定义一个msgdialog组件`
+## `2.在主页面定义一个msgdialog组件（整个应用程序中只需要定义一次）`
 <msg-dialog (msgDialogLoaded)="msgDialogLoaded($event)"></msg-dialog>
 
 ## `3.在component中定义弹窗的初始化函数`
