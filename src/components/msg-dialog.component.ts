@@ -28,6 +28,10 @@ export class MsgDialog implements OnInit {
 
     ngOnInit() {
         this.msgDialogLoaded.emit(this);
+        this.msgDialogModal.onHidden.subscribe(() => {
+            this.onOK = new EventEmitter<any>();
+            this.onCancel = new EventEmitter<any>();
+        });
     }
 
     public showModal(settings: MsgDialogSettings): MsgDialog {
@@ -57,16 +61,18 @@ export class MsgDialog implements OnInit {
     }
 
     private onOkEvent(): void {
-        this.hideModal();
         if (this.onOK) {
             this.onOK.emit(true);
         }
+
+        this.hideModal();
     }
 
     private onCancelEvent(): void {
-        this.hideModal();
         if (this.settings && this.settings.showCancelButton && this.onCancel) {
             this.onCancel.emit(false);
         }
+
+        this.hideModal();
     }
 }
